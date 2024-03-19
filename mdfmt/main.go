@@ -20,18 +20,37 @@ import (
 	"io"
 	"log"
 	"os"
+	"runtime/debug"
 
-	"rsc.io/markdown"
+	"zacharysyoung/markdown"
 )
 
 var (
 	wflag = flag.Bool("w", false, "write reformatted Markdown to files ")
+	vflag = flag.Bool("v", false, "version info")
 	exit  = 0
 )
 
 func usage() {
-	fmt.Fprintf(os.Stderr, "usage: mdfmt [-w] [file...]\n")
+	fmt.Fprintf(os.Stderr, "usage: mdfmt [-v] [-w] [file...]\n")
 	flag.PrintDefaults()
+	os.Exit(2)
+}
+
+func version() {
+	s := "zachs_markdown:mdfmt"
+	bi, ok := debug.ReadBuildInfo()
+	if !ok {
+		panic(fmt.Errorf("could not get build info"))
+	}
+	for _, x := range bi.Settings {
+		if x.Key == "vcs.revision" {
+			s += ":" + x.Value[:7] // short hash
+			break
+		}
+	}
+	s += ":" + bi.GoVersion
+	fmt.Fprintln(os.Stderr, s)
 	os.Exit(2)
 }
 
@@ -40,6 +59,10 @@ func main() {
 	log.SetFlags(0)
 	flag.Usage = usage
 	flag.Parse()
+
+	if *vflag {
+		version()
+	}
 
 	if flag.NArg() == 0 {
 		data, err := io.ReadAll(os.Stdin)

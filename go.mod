@@ -1,4 +1,4 @@
-module rsc.io/markdown
+module zacharysyoung/markdown
 
 go 1.20
 
