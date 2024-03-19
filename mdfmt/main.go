@@ -9,7 +9,8 @@
 //	mdfmt [-w] [file...]
 //
 // Mdfmt reads the named files, or else standard input, as Markdown documents
-// and then reprints the same Markdown documents to standard output.
+// and then reprints the same Markdown documents to standard output.  Includes
+// support for the extended tables syntax.
 //
 // The -w flag specifies to rewrite the files in place.
 package main
