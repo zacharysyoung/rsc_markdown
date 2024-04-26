@@ -23,7 +23,7 @@ import (
 	"os"
 	"runtime/debug"
 
-	"github.com/zacharysyoung/markdown"
+	markdown "github.com/zacharysyoung/rsc_markdown"
 )
 
 var (
