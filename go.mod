@@ -1,4 +1,4 @@
-module zacharysyoung/markdown
+module github.com/zacharysyoung/markdown
 
 go 1.20
 
