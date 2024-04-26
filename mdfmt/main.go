@@ -23,7 +23,7 @@ import (
 	"os"
 	"runtime/debug"
 
-	"zacharysyoung/markdown"
+	"github.com/zacharysyoung/markdown"
 )
 
 var (
