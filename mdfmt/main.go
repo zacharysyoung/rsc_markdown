@@ -62,7 +62,7 @@ func main() {
 }
 
 func convert(data []byte, file string) {
-	var p markdown.Parser
+	p := markdown.Parser{Table: true}
 	doc := p.Parse(string(data))
 	out := []byte(markdown.Format(doc))
 	if *wflag && file != "" {
